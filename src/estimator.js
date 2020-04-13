@@ -48,7 +48,7 @@ const dollarsInFlight = (data, infectionsByRequestedTime) => {
 const availableBed = (givenBed, severeCasesByRequestedTime) => {
   const availableBeds = givenBed * (35 / 100);
   const data = Number.parseInt(availableBeds, 10) - severeCasesByRequestedTime;
-  return Number.parseInt(1 + data, 10);
+  return Number.parseInt(data, 10);
 };
 
 const computeCurrentlyInfected = (data) => {
@@ -63,14 +63,14 @@ const computeCurrentlyInfected = (data) => {
   output.severeImpact.currentlyInfected = severeImpactCurrentlyInfected;
   output.severeImpact.infectionsByRequestedTime = (severeImpactCurrentlyInfected) * time;
   const sscbrt = output.severeImpact.infectionsByRequestedTime * fifetenpercent;
-  output.severeImpact.severeCasesByRequestedTime = sscbrt;
+  output.severeImpact.severeCasesByRequestedTime = Number.parseInt(sscbrt, 10);
   output.severeImpact.hospitalBedsByRequestedTime = availableBed(data.totalHospitalBeds, sscbrt);
   const scasesForICUByRequestedTime = fivepercent * output.severeImpact.infectionsByRequestedTime;
   output.severeImpact.casesForICUByRequestedTime = Number.parseInt(scasesForICUByRequestedTime, 10);
   const sventilator = twopercent * output.severeImpact.infectionsByRequestedTime;
   output.severeImpact.casesForVentilatorsByRequestedTime = Number.parseInt(sventilator, 10);
   const sdfc = dollarsInFlight(data, output.severeImpact.infectionsByRequestedTime);
-  output.severeImpact.dollarsInFlight = parseInt(sdfc, 10); // boundary
+  output.severeImpact.dollarsInFlight = Number.parseInt(sdfc, 10); // boundary
   output.impact.currentlyInfected = impactCurrentlyInfected;
   output.impact.infectionsByRequestedTime = (impactCurrentlyInfected) * time;
   const iscbrt = Number.parseInt(output.impact.infectionsByRequestedTime * fifetenpercent, 10);
