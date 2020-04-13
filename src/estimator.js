@@ -1,8 +1,8 @@
 const output = {
   data: {},
-  estimate:{
-  impact: {},
-  severeImpact: {}
+  estimate: {
+    impact: {},
+    severeImpact: {}
   }
 };
 
