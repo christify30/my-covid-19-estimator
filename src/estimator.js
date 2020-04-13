@@ -26,8 +26,8 @@ const calculateTIme = (type, value) => {
 
 const availableBed = (givenBed, severeCasesByRequestedTime) => {
   const availableBeds = givenBed * (35 / 100);
-  const data = parseInt(availableBeds, 10) - parseInt(severeCasesByRequestedTime - 1, 10);
-  return Number(data);
+  const data = availableBeds - severeCasesByRequestedTime;
+  return Number.parseInt(data);
 };
 
 const computeCurrentlyInfected = (data) => {
