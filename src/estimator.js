@@ -32,10 +32,10 @@ const dollarsInFlight = (data, infectionsByRequestedTime) => {
       result = id * data.region.avgDailyIncomeInUSD * data.timeToElapse;
       break;
     case 'weeks':
-      result = id * data.region.avgDailyIncomeInUSD * data.timeToElapse * 7;
+      result = id * data.region.avgDailyIncomeInUSD * (data.timeToElapse * 7);
       break;
     case 'months':
-      result = id * data.region.avgDailyIncomeInUSD * data.timeToElapse * 30;
+      result = id * data.region.avgDailyIncomeInUSD * (data.timeToElapse * 30);
       break;
     default:
       result = id * data.region.avgDailyIncomeInUSD * data.timeToElapse;
@@ -66,22 +66,22 @@ const computeCurrentlyInfected = (data) => {
   output.severeImpact.severeCasesByRequestedTime = sscbrt;
   output.severeImpact.hospitalBedsByRequestedTime = availableBed(data.totalHospitalBeds, sscbrt);
   const scasesForICUByRequestedTime = fivepercent * output.severeImpact.infectionsByRequestedTime;
-  output.severeImpact.casesForICUByRequestedTime = scasesForICUByRequestedTime;
+  output.severeImpact.casesForICUByRequestedTime = Number.parseInt(scasesForICUByRequestedTime, 10);
   const sventilator = twopercent * output.severeImpact.infectionsByRequestedTime;
-  output.severeImpact.casesForVentilatorsByRequestedTime = sventilator;
+  output.severeImpact.casesForVentilatorsByRequestedTime = Number.parseInt(sventilator, 10);
   const sdfc = dollarsInFlight(data, output.severeImpact.infectionsByRequestedTime);
-  output.severeImpact.dollarsInFlight = sdfc; // boundary
+  output.severeImpact.dollarsInFlight = parseInt(sdfc, 10); // boundary
   output.impact.currentlyInfected = impactCurrentlyInfected;
   output.impact.infectionsByRequestedTime = (impactCurrentlyInfected) * time;
   const iscbrt = Number.parseInt(output.impact.infectionsByRequestedTime * fifetenpercent, 10);
   output.impact.severeCasesByRequestedTime = iscbrt;
   output.impact.hospitalBedsByRequestedTime = availableBed(data.totalHospitalBeds, iscbrt);
   const icasesForICUByRequestedTime = fivepercent * output.impact.infectionsByRequestedTime;
-  output.impact.casesForICUByRequestedTime = icasesForICUByRequestedTime;
+  output.impact.casesForICUByRequestedTime = parseInt(icasesForICUByRequestedTime, 10);
   const iventilator = twopercent * output.impact.infectionsByRequestedTime;
-  output.impact.casesForVentilatorsByRequestedTime = iventilator; // boundary
+  output.impact.casesForVentilatorsByRequestedTime = parseInt(iventilator, 10); // boundary
   const idfc = dollarsInFlight(data, output.impact.infectionsByRequestedTime);
-  output.impact.dollarsInFlight = idfc;
+  output.impact.dollarsInFlight = parseInt(idfc, 10);
 };
 
 const covid19ImpactEstimator = (data) => {
