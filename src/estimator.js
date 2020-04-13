@@ -25,8 +25,8 @@ const calculateTIme = (type, value) => {
 };
 
 const availableBed = (givenBed, severeCasesByRequestedTime) => {
-  const availableBeds = Number.parseInt(givenBed * (15 / 100), 10);
-  const data = Number(availableBeds) - Number(severeCasesByRequestedTime);
+  const availableBeds = givenBed * (15 / 100);
+  const data = Number.parseInt(availableBeds, 10) - Number.parseInt(severeCasesByRequestedTime, 10);
   return Number(data);
 };
 
