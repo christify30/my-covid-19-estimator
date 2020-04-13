@@ -47,7 +47,7 @@ const dollarsInFlight = (data, infectionsByRequestedTime) => {
 
 const availableBed = (givenBed, severeCasesByRequestedTime) => {
   const availableBeds = givenBed * (35 / 100);
-  const data = Number.parseInt(availableBeds, 10) - severeCasesByRequestedTime;
+  const data = Number.parseInt(availableBeds - severeCasesByRequestedTime, 10);
   return Number.parseInt(data, 10);
 };
 
