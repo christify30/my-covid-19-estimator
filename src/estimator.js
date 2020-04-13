@@ -26,8 +26,8 @@ const calculateTIme = (type, value) => {
 
 const availableBed = (givenBed, severeCasesByRequestedTime) => {
   const availableBeds = Number.parseInt(givenBed * (15 / 100), 10);
-  const data = availableBeds - severeCasesByRequestedTime;
-  return data;
+  const data = Number(availableBeds) - Number(severeCasesByRequestedTime);
+  return Number(data);
 };
 
 const computeCurrentlyInfected = (data) => {
@@ -39,12 +39,12 @@ const computeCurrentlyInfected = (data) => {
   const severeImpactCurrentlyInfected = (data.reportedCases) * 50;
   output.severeImpact.currentlyInfected = severeImpactCurrentlyInfected;
   output.severeImpact.infectionsByRequestedTime = (severeImpactCurrentlyInfected) * time;
-  const sscbrt = parseInt((severeImpactCurrentlyInfected * time) * fifetenpercent, 10);
+  const sscbrt = Number.parseInt((severeImpactCurrentlyInfected * time) * fifetenpercent, 10);
   output.severeImpact.severeCasesByRequestedTime = sscbrt;
   output.severeImpact.hospitalBedsByRequestedTime = availableBed(data.totalHospitalBeds, sscbrt);
   output.impact.currentlyInfected = impactCurrentlyInfected;
   output.impact.infectionsByRequestedTime = (impactCurrentlyInfected) * time;
-  const iscbrt = parseInt(((impactCurrentlyInfected) * time) * fifetenpercent, 10);
+  const iscbrt = Number.parseInt(((impactCurrentlyInfected) * time) * fifetenpercent, 10);
   output.impact.severeCasesByRequestedTime = iscbrt;
   output.impact.hospitalBedsByRequestedTime = availableBed(data.totalHospitalBeds, iscbrt);
 };
