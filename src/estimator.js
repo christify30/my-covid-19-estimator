@@ -14,7 +14,7 @@ const calculateTIme = (type, value) => {
       data = 2 ** Number.parseInt(((value * 7) / 3), 10);
       break;
     case 'months':
-      data = 2 ** Number.parseInt(((value * 28) / 3), 10);
+      data = 2 ** Number.parseInt(((value * 30) / 3), 10);
       break;
     default:
       data = 1024;
