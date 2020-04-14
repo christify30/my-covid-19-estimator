@@ -42,7 +42,7 @@ const dollarsInFlight = (data, infectionsByRequestedTime) => {
       break;
   }
 
-  return Number.parseInt(result, 10);
+  return Number.parseInt(result, 10); // return result
 };
 
 const availableBed = (givenBed, severeCasesByRequestedTime) => {
