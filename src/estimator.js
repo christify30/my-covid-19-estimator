@@ -29,20 +29,20 @@ const dollarsInFlight = (data, infectionsByRequestedTime) => {
   const id = (infectionsByRequestedTime * data.region.avgDailyIncomePopulation);
   switch (data.periodType) {
     case 'days':
-      result = id * data.region.avgDailyIncomeInUSD * data.timeToElapse;
+      result = (id * data.region.avgDailyIncomeInUSD) / data.timeToElapse;
       break;
     case 'weeks':
-      result = id * data.region.avgDailyIncomeInUSD * (data.timeToElapse * 7);
+      result = (id * data.region.avgDailyIncomeInUSD) / (data.timeToElapse * 7);
       break;
     case 'months':
-      result = id * data.region.avgDailyIncomeInUSD * (data.timeToElapse * 30);
+      result = (id * data.region.avgDailyIncomeInUSD) / (data.timeToElapse * 30);
       break;
     default:
-      result = id * data.region.avgDailyIncomeInUSD * data.timeToElapse;
+      result = (id * data.region.avgDailyIncomeInUSD) / data.timeToElapse;
       break;
   }
 
-  return result;
+  return Number.parseInt(result, 10);
 };
 
 const availableBed = (givenBed, severeCasesByRequestedTime) => {
