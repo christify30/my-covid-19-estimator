@@ -53,7 +53,7 @@ const availableBed = (givenBed, severeCasesByRequestedTime) => {
 
 const computeCurrentlyInfected = (data) => {
   // sscbrt=severeCasesByRequestedTime for severeImpact
-  // iscbrt=severeCasesByRequestedTime for Impact
+  // iscbrt=severeCasesByRequestedTime for Impacta
   const time = calculateTIme(data.periodType, data.timeToElapse);
   const fifetenpercent = (15 / 100);
   const fivepercent = (5 / 100);
