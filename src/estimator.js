@@ -81,7 +81,7 @@ const computeCurrentlyInfected = (data) => {
   const iventilator = twopercent * output.impact.infectionsByRequestedTime;
   output.impact.casesForVentilatorsByRequestedTime = parseInt(iventilator, 10); // boundary
   const idfc = dollarsInFlight(data, output.impact.infectionsByRequestedTime);
-  output.impact.dollarsInFlight = parseInt(idfc, 10);
+  output.impact.dollarsInFlight = Number.parseInt(idfc, 10);
 };
 
 const covid19ImpactEstimator = (data) => {
